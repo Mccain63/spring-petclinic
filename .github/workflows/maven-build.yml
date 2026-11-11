@@ -1,9 +1,6 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-java-with-maven
 
-name: Clean Maven cache
-run: rm -rf ~/.m2/repository/org/apache/maven/surefire/ || true
-
 name: Java CI with Maven
 
 on:
