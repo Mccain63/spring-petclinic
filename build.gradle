@@ -7,6 +7,8 @@ plugins {
   id 'org.cyclonedx.bom' version '3.2.4'
   id 'io.spring.javaformat' version '0.0.47'
   id "io.spring.nohttp" version "0.0.11"
+  id "jacoco"
+  id "org.sonarqube" version "5.1.0.4880"
 }
 
 gradle.startParameter.excludedTaskNames += [ "checkFormatAot", "checkFormatAotTest" ]
@@ -92,3 +94,24 @@ checkFormatAotTest.enabled = false
 
 formatAot.enabled = false
 formatAotTest.enabled = false
+
+test {
+    finalizedBy jacocoTestReport // Cela dit à Gradle : "Dès que les tests sont finis, génère le rapport"
+}
+
+jacocoTestReport {
+    dependsOn test // Cela dit : "Pour faire le rapport, il faut d'abord faire les tests"
+}
+
+sonar {
+    properties {
+        // Si vous utilisez SonarQube installé localement sur votre Mac :
+        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.token", "VOTRE_TOKEN_ICI"
+
+        // SI vous utilisez SonarCloud (version en ligne), utilisez ceci à la place :
+        // property "sonar.host.url", "https://sonarcloud.io"
+        // property "sonar.organization", "votre-nom-organisation"
+        // property "sonar.token", "VOTRE_TOKEN_ICI"
+    }
+}
