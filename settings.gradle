@@ -1,1 +1,8 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal() // <--- C'EST CETTE LIGNE QUI EST CRUCIALE
+        mavenCentral()
+        google()
+    }
+}
 rootProject.name = 'spring-petclinic'
