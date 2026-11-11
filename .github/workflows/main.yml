@@ -28,4 +28,3 @@ jobs:
           path: |
             build/reports/checkstyle/
             build/reports/jacoco/
-            build/reports/dependency-check/
